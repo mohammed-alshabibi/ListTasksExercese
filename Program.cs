@@ -8,18 +8,23 @@
 
 
             Console.WriteLine("Enter Number of List:");
-            int n =int.Parse(Console.ReadLine());// number of elements in the list
+            int n = int.Parse(Console.ReadLine());// number of elements in the list
             for (int i = 0; i < n; i++)
             {
                 Console.WriteLine($"Enter {i + 1} number :");
                 int number = int.Parse(Console.ReadLine());
                 numbers.Add(number);
             }
-            int TopFreqNum=GetTopFreqNum(n);
-            Console.WriteLine("The Top Frequency Number is: " + TopFreqNum);
-
-
-
+            //int TopFreqNum=GetTopFreqNum(n);
+            //Console.WriteLine("The Top Frequency Number is: " + TopFreqNum);
+            Console.WriteLine("Enter the number to shift the list:");
+            int shift =int.Parse(Console.ReadLine());
+            List<int>shiftList=ShiftListElement(shift);
+            //Console.WriteLine(shiftList);
+            foreach (int num in shiftList)
+            {
+                Console.Write(num + " ");
+            }
         }
         public static int GetTopFreqNum(int input)
         {
@@ -45,6 +50,17 @@
                 }
             }
             return freqElement;
+        }
+        public static List<int> ShiftListElement(int shift)
+        {
+            List<int> shiftedList = new List<int>();
+
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                int index = (i + shift) % numbers.Count;
+                shiftedList.Add(numbers[index]);
+            }
+            return shiftedList;
         }
 
     }
