@@ -116,12 +116,11 @@
         // function that rotates the elements of a List<int> to the right by k steps
         public static List<int> ShiftListElement(int shift)
         {
-            List<int> shiftedList = new List<int>();
-
-            for (int i = 0; i < numbers.Count; i++)
+            List<int> shiftedList = new List<int>(new int[numbers.Count]);
+            shift = shift % numbers.Count; // Ensure shift is within the bounds of the list size
+            for(int i = 0; i < numbers.Count; i++)
             {
-                int index = (i + shift) % numbers.Count;// calculate the new index after shifting
-                shiftedList.Add(numbers[index]);
+                shiftedList[(i + shift) %numbers.Count] = numbers[i];
             }
             return shiftedList;
         }
