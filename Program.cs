@@ -2,25 +2,35 @@
 {
     internal class Program
     {
+        static List<int> numbers = new List<int>();
         static void Main(string[] args)
         {
-            List <int> numbers = new List<int>();
-            
-            Console.WriteLine("Enter 6 numbers :");
-            for (int i = 0; i < 6; i++)
+
+
+            Console.WriteLine("Enter Number of List:");
+            int n =int.Parse(Console.ReadLine());// number of elements in the list
+            for (int i = 0; i < n; i++)
             {
-                Console.WriteLine($"Enter {i+1}  number :");
+                Console.WriteLine($"Enter {i + 1} number :");
                 int number = int.Parse(Console.ReadLine());
                 numbers.Add(number);
             }
+            int TopFreqNum=GetTopFreqNum(n);
+            Console.WriteLine("The Top Frequency Number is: " + TopFreqNum);
+
+
+
+        }
+        public static int GetTopFreqNum(int input)
+        {
             
             int maxFreq = 0;
             int freqElement = numbers[0];
             // outer loop that iterate in list count
-            for (int i = 0; i<numbers.Count; i++)
+            for (int i = 0; i < numbers.Count; i++)
             {
                 int frequency = 0;// reset in every iteration to count frequency of each number 
-                for (int j = 0 ; j < numbers.Count; j++)
+                for (int j = 0; j < numbers.Count; j++)
                 {
                     if (numbers[i] == numbers[j])
                     {
@@ -34,8 +44,7 @@
                     freqElement = numbers[i];
                 }
             }
-            Console.WriteLine("The Top Frequncy number is " + freqElement+" repeated "+maxFreq);
-            
+            return freqElement;
         }
 
     }
