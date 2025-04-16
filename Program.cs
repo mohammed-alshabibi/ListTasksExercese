@@ -15,12 +15,13 @@
                 int number = int.Parse(Console.ReadLine());
                 numbers.Add(number);
             }
-            //int TopFreqNum=GetTopFreqNum(n);
-            //Console.WriteLine("The Top Frequency Number is: " + TopFreqNum);
+            int TopFreqNum=GetTopFreqNum(n);
+            Console.WriteLine("The Top Frequency Number is: " + TopFreqNum);
+            Console.WriteLine("--------------------------------------------");
             Console.WriteLine("Enter the number to shift the list:");
             int shift =int.Parse(Console.ReadLine());
             List<int>shiftList=ShiftListElement(shift);
-            //Console.WriteLine(shiftList);
+            // iterate into shfit list and print each element
             foreach (int num in shiftList)
             {
                 Console.Write(num + " ");
@@ -51,13 +52,14 @@
             }
             return freqElement;
         }
+        // function that rotates the elements of a List<int> to the right by k steps
         public static List<int> ShiftListElement(int shift)
         {
             List<int> shiftedList = new List<int>();
 
             for (int i = 0; i < numbers.Count; i++)
             {
-                int index = (i + shift) % numbers.Count;
+                int index = (i + shift) % numbers.Count;// calculate the new index after shifting
                 shiftedList.Add(numbers[index]);
             }
             return shiftedList;
