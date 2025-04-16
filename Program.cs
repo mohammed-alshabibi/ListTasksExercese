@@ -42,8 +42,7 @@
             List<int> uniqueNumbers = new List<int>();
             List<int> frequencies = new List<int>();
 
-            // Clear duplication list to avoid stale data
-            duplication.Clear();
+            
 
             // Calculate the frequency of each number
             for (int i = 0; i < numbers.Count; i++)
@@ -51,9 +50,9 @@
                 if (!uniqueNumbers.Contains(numbers[i]))
                 {
                     uniqueNumbers.Add(numbers[i]);
-                    int frequency = 0;
+                    int frequency = 0;//reset the freq
 
-                    // Count occurrences of the current number
+                    // loop through the list to count the frequency of the current number
                     for (int j = 0; j < numbers.Count; j++)
                     {
                         if (numbers[i] == numbers[j])
@@ -66,7 +65,7 @@
                 }
             }
 
-            // Populate the duplication list with frequencies
+            // 
             foreach (int number in numbers)
             {
                 int index = uniqueNumbers.IndexOf(number);
@@ -117,12 +116,23 @@
         public static List<int> ShiftListElement(int shift)
         {
             List<int> shiftedList = new List<int>(new int[numbers.Count]);
-            shift = shift % numbers.Count; // Ensure shift is within the bounds of the list size
-            for(int i = 0; i < numbers.Count; i++)
+            // Check if the shift value is less than the size of the list
+            if (shift < numbers.Count)
             {
-                shiftedList[(i + shift) %numbers.Count] = numbers[i];
+                shift = shift % numbers.Count; // Ensure shift is within the bounds of the list size
+                for (int i = 0; i < numbers.Count; i++)
+                {
+                    //Ensure that rorate to the right without exceeding the list size,avoit out of range
+                    shiftedList[(i + shift) % numbers.Count] = numbers[i];
+                }
+
             }
-            return shiftedList;
+            else
+            {
+                Console.WriteLine("The shift value is greater than the list size.");
+            }
+
+                return shiftedList;
         }
 
     }
