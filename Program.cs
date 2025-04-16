@@ -16,16 +16,18 @@
             
             int maxFreq = 0;
             int freqElement = numbers[0];
+            // outer loop that iterate in list count
             for (int i = 0; i<numbers.Count; i++)
             {
-                int frequency = 0;
+                int frequency = 0;// reset in every iteration to count frequency of each number 
                 for (int j = 0 ; j < numbers.Count; j++)
                 {
                     if (numbers[i] == numbers[j])
                     {
-                        frequency++;
+                        frequency++;// increament frequency
                     }
                 }
+                // check the frequency with max freq
                 if (frequency > maxFreq)
                 {
                     maxFreq = frequency;
