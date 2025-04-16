@@ -35,6 +35,17 @@
             {
                 Console.Write(num + " ");
             }
+            Console.WriteLine("--------------------------------------------");
+            List<string>Words =new List<string>();
+            for (int i = 0; i < n; i++) {
+                Console.WriteLine("Enter Words:");
+                string str = Console.ReadLine();
+                Words.Add(str);  
+            }
+            foreach(string str in Palindrome(Words))
+            {
+                Console.WriteLine("The Non-Palindrime Word/s is: "+str);
+            }
         }
         public static List<int> GetTopFreqNum(int n)
         {
@@ -133,6 +144,35 @@
             }
 
                 return shiftedList;
+        }
+        public static bool CheckPlaindrome(string str)
+        {
+            int left = 0;
+            int right = str.Length - 1;
+            while (left < right)
+            {
+                if (str[left] != str[right])
+                {
+                    return false; // Not a palindrome
+                }
+                left++;
+                right--;
+            }
+            return true; // Is a palindrome
+        }
+        public static List<string> Palindrome(List<string> str) 
+        {
+            List<string> PalindromList = new List<string>();
+            foreach (string str2 in str)
+            {
+                if (!CheckPlaindrome((string)str2))
+                {
+                    PalindromList.Add(str2);
+                }
+            }
+            return PalindromList;
+
+
         }
 
     }
