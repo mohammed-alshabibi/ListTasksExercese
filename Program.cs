@@ -46,6 +46,18 @@
             {
                 Console.WriteLine("The Non-Palindrime Word/s is: "+str);
             }
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("Enter a paragraph:");
+            string paragraph = Console.ReadLine();
+
+            List<string> uniqueWords = UniqueWordsExtractor(paragraph);
+
+            Console.WriteLine("Unique words (sorted alphabetically):");
+            foreach (string word in uniqueWords)
+            {
+                Console.WriteLine(word);
+            }
+
         }
         public static List<int> GetTopFreqNum(int n)
         {
@@ -174,6 +186,27 @@
 
 
         }
+        public static List<string> UniqueWordsExtractor(string paragraph)
+        {
+            // Split the paragraph into words using spaces and punctuation as delimiters
+            char[] delimiters = { ' ', ',', '.', '!', '?', ';', ':', '-', '\n', '\r' };
+            string[] words = paragraph.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+
+            // Use a HashSet to store unique words (case-insensitive)
+            HashSet<string> uniqueWords = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (string word in words)
+            {
+                uniqueWords.Add(word);
+            }
+
+            // Convert the HashSet to a List and sort it alphabetically
+            List<string> sortedUniqueWords = uniqueWords.ToList();
+            sortedUniqueWords.Sort(StringComparer.OrdinalIgnoreCase);
+
+            return sortedUniqueWords;
+        }
+
 
     }
 }
