@@ -197,7 +197,9 @@
 
             foreach (string word in words)
             {
+        
                 uniqueWords.Add(word);
+
             }
 
             // Convert the HashSet to a List and sort it alphabetically
